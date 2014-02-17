@@ -35,10 +35,15 @@ from . import module
 
 
 @module.route('/')
-def home():
-    """Returns the home page, which is an overview of the project."""
+def index():
+  
+  message = {
+    'status': '200 OK',
+    'status_code': 200,
+    'message': 'Welcome to CommonsCloudServices, if you\'ve arrived at this URL you probably need to read the documentation (https://github.com/CommonsCloud/CommonsCloudServices/README.md)'
+  }
 
-    return render_template('home.html')
+  return jsonify(message), 200
 
 @module.route('/user/<string:this_username>/')
 def user(this_username):
