@@ -3,12 +3,16 @@ import logging
 import subprocess
 import json
 import hashlib
-from moment import redis, conf, utilities
+
+from CommonsCloudServices import config
+from CommonsCloudServices import utilities
+
+from CommonsCloudServices.extensions import redis
 
 
-USER_KEY_PREFIX = conf.REDIS_KEY_PREFIX + 'user,'
+USER_KEY_PREFIX = config.REDIS_KEY_PREFIX + 'user,'
 
-CAPTURE_KEY_PREFIX = conf.REDIS_KEY_PREFIX + 'capture,'
+CAPTURE_KEY_PREFIX = config.REDIS_KEY_PREFIX + 'capture,'
 
 
 class Model(object):
@@ -210,16 +214,16 @@ class Capture(Model):
         filename = '{key}.{format}'.format(key=self.get_key().lstrip(self.prefix),
                                            format=self.arguments['format'])
 
-        image = os.path.join(conf.CAPTURES_ROOT, filename)
+        image = os.path.join(config.CAPTURES_ROOT, filename)
 
         if self.arguments['renderer'] == 'gecko':
 
             self.engine = 'slimerjs'
 
-        params = [conf.CASPER,
+        params = [config.CASPER,
                   '--log-level={level}'.format(level=self.engine_loglevel),
                   '--engine={engine}'.format(engine=self.engine),
-                  conf.CAPTURE_SCRIPT,
+                  config.CAPTURE_SCRIPT,
                   image,
                   self.arguments['url'],
                   self.arguments['viewport'],
