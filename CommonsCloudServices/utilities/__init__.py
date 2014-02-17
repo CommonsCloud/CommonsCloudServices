@@ -16,6 +16,7 @@ Import System dependencies
 """
 import imp
 import os
+import re
 import uuid
 
 from CommonsCloudServices import config
@@ -67,3 +68,10 @@ Pretty self explanatory
 def generate_uuid():
 
     return uuid.uuid4().hex
+
+
+"""
+Sanitize user input
+"""
+def sanitize_string(user_input):
+  return re.sub('[^0-9a-zA-Z]+', '*', user_input).replace(' ', '_')

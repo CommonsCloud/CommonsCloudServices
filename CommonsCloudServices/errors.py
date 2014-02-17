@@ -14,7 +14,7 @@ limitations under the License.
 """
 Import Flask dependencies
 """
-from flask import render_template
+from flask import jsonify
 
 
 """
@@ -30,9 +30,19 @@ def load_errorhandlers(app):
   """
   @app.errorhandler(404)
   def internal_error(error):
-    return render_template('system/error_404.html'), 404
+
+    message = {
+      'message': 'Sorry we couldn\'t find the page you were looking for.'
+    }
+
+    return jsonify(message), 404
   
   @app.errorhandler(500)
   def internal_error(error):
-      return render_template('system/error_500.html'), 500
+
+    message = {
+      'message': 'Looks like we can\'t return anything based on your request, check the syntax of your request, and try again'
+    }
+
+    return jsonify(message), 500
   

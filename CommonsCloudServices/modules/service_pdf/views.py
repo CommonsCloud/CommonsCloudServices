@@ -26,6 +26,8 @@ Import Application Dependencies
 from CommonsCloudServices.extensions import redis
 from CommonsCloudServices.extensions import q
 
+from CommonsCloudServices.utilities import sanitize_string
+
 
 """
 Import Module Dependencies
@@ -46,8 +48,6 @@ the CommonsCloudServices API
 def index():
   
   message = {
-    'status': '200 OK',
-    'status_code': 200,
     'message': 'Welcome to CommonsCloudServices, if you\'ve arrived at this URL you probably need to read the documentation (https://github.com/CommonsCloud/CommonsCloudServices/README.md)'
   }
 
@@ -56,17 +56,27 @@ def index():
 
 """
 """
-@module.route('/user/<string:this_username>/')
-def user(this_username):
-    """Returns the home page, which is an overview of the project."""
+@module.route('/user/<string:username>/')
+def user(username):
 
-    u = models.create_user(username=this_username)
+  """
+  Create a user in our Redis database
+  """
+  username_ = sanitize_string(username)
+  u = models.create_user(username=username_)
 
-    print u
-    print dir(u)
+  print dir(u)
+  print u
 
-    return 'grr'
+  uuid_ = u[0].replace('CommonsCloudServices::user,', '')
+  secret_ = u[1]
 
+  message = {
+    'uuid': uuid_,
+    'secret': secret_
+  }
+  
+  return jsonify(message), 200
 
 @module.route('/capture/')
 def get_capture():
