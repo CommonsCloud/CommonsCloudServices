@@ -34,7 +34,15 @@ from . import models
 from . import module
 
 
-@module.route('/')
+"""
+A basic landing page, just in case folks aren't familiar with
+the CommonsCloudServices API
+
+@return (json)
+  Returns a welcome message and how to use the API
+
+"""
+@module.route('/', methods=['GET'])
 def index():
   
   message = {
@@ -45,6 +53,9 @@ def index():
 
   return jsonify(message), 200
 
+
+"""
+"""
 @module.route('/user/<string:this_username>/')
 def user(this_username):
     """Returns the home page, which is an overview of the project."""
@@ -55,13 +66,6 @@ def user(this_username):
     print dir(u)
 
     return 'grr'
-
-
-@module.route('/api/')
-def rest_api():
-    """Base route for a RESTful API service."""
-
-    return jsonify({"error": "Not implemented. A RESTful API service."})
 
 
 @module.route('/capture/')
