@@ -213,7 +213,6 @@ class Capture(Model):
 
         filename = '{key}.{format}'.format(key=self.get_key().lstrip(self.prefix),
                                            format=self.arguments['format'])
-
         image = os.path.join(config.CAPTURES_ROOT, filename)
 
         if self.arguments['renderer'] == 'gecko':
@@ -254,7 +253,10 @@ class Capture(Model):
 
         else:
 
-            return image
+            return {
+                'image': image,
+                'filename': filename
+            }
 
 
 def q_capture_put(image=None, **kwargs):

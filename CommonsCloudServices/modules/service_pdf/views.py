@@ -17,12 +17,15 @@ Import Flask Dependencies
 from flask import jsonify
 from flask import render_template
 from flask import request
-from flask import send_file
+from flask import send_from_directory
+from flask import url_for
 
 
 """
 Import Application Dependencies
 """
+from CommonsCloudServices import config
+
 from CommonsCloudServices.extensions import redis
 from CommonsCloudServices.extensions import q
 
@@ -55,8 +58,10 @@ def index():
 
 
 """
+Create a user name, token, and secret in the database
+for users to create a request for
 """
-@module.route('/user/<string:username>/')
+@module.route('/user/<string:username>/', methods=['GET'])
 def user(username):
 
   """
@@ -64,9 +69,6 @@ def user(username):
   """
   username_ = sanitize_string(username)
   u = models.create_user(username=username_)
-
-  print dir(u)
-  print u
 
   uuid_ = u[0].replace('CommonsCloudServices::user,', '')
   secret_ = u[1]
@@ -78,34 +80,41 @@ def user(username):
   
   return jsonify(message), 200
 
-@module.route('/capture/')
+
+@module.route('/image/<string:image_path>', methods=['GET'])
+def get_image(image_path):
+  image_uri = config.CAPTURES_ROOT, image_path
+  print image_uri
+  return send_from_directory(config.CAPTURES_ROOT, image_path)
+
+
+@module.route('/capture/', methods=['GET'])
 def get_capture():
-    """Directly returns captures based on valid request parameters."""
 
-    if not request.args.get('user') or not request.args.get('token'):
+  if not request.args.get('user') or not request.args.get('token'):
+    return jsonify({"error": "A valid USER and TOKEN are required."})
 
-        return jsonify({"error": "A valid USER and TOKEN are required."})
+  if not request.args.get('url'):
+    return jsonify({"error": "A valid URL is required."})
 
-    if not request.args.get('url'):
+  user = models.User(request.args)
 
-        return jsonify({"error": "A valid URL is required."})
+  if not user.is_valid():
+    return jsonify({"error": "Either the USER or TOKEN is invalid."})
 
-    user = models.User(request.args)
+  capture = models.Capture(request.args)
 
-    if not user.is_valid():
+  image = redis.get(capture.get_key())
 
-        return jsonify({"error": "Either the USER or TOKEN is invalid."})
-
-    capture = models.Capture(request.args)
-
-    image = redis.get(capture.get_key())
-
-    if image:
-
-        return send_file(image)
-
-    image = capture.capture()
-
-    q.enqueue(models.q_capture_put, image, **capture.arguments)
-
+  if image:
     return send_file(image)
+
+  image = capture.capture()
+
+  q.enqueue(models.q_capture_put, image['image'], **capture.arguments)
+
+  message = {
+    'uri': url_for('service_pdf.get_image', image_path=image['filename'], _external=True)
+  }
+  
+  return jsonify(message), 200
