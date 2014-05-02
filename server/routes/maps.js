@@ -9,7 +9,7 @@ router.get('/', function(request, response) {
 
   var query = url_parts.query['geography'];;
 
-  response.render('maps', { __geojson__: 'Asked for ' + query});
+  response.render('maps.html', { __geojson__: 'Asked for ' + query});
 });
 
 module.exports = router;
