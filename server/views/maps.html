@@ -51,7 +51,8 @@ var geojson = [
 var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
 
 var property_boundary = L.GeoJSON(geojson_to_print);
-map.fitBounds(property_boundary.getBounds(), {
+var feature_layer = L.featureGroup(property_boundary);
+map.fitBounds(feature_layer.getBounds(), {
   maxZoom: 18
 });
 
