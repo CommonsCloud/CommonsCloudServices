@@ -53,6 +53,7 @@ var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
 var featureLayer = L.mapbox.featureLayer(geojson_to_print);
 
 featureLayer.on('ready', function() {
+    console.log('ready!');
     map.fitBounds(featureLayer.getBounds());
 });
 
