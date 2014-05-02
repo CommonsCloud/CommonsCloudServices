@@ -61,9 +61,9 @@ for(feature = 0; i < geojson_to_print.features.length; feature++) {
     geojson_to_print[feature] = "Do Something Here".
     console.log('feature', geojson_to_print[feature]);
 
-    L.GeoJSON(feature, {
-      style: function(geojson_to_print[feature]) {
-          return geojson_to_print[feature].properties.style
+    L.GeoJSON(geojson_to_print[feature], {
+      style: function(_feature) {
+          return _feature.properties.style
       }
     }).addTo(map);
 }
