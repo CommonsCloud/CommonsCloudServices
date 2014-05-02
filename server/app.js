@@ -13,8 +13,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-app.register('.html', require('jade'));
+app.engine('html', require('ejs').renderFile);
 
 app.use(favicon());
 app.use(logger('dev'));
