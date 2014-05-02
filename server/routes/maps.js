@@ -7,9 +7,9 @@ router.get('/', function(request, response) {
 
   var url_parts = url.parse(request.url, true);
 
-  var query = url_parts.query['geography'];;
+  var geojson = url_parts.query['geography'];;
 
-  response.render('maps.html', { __geojson__: 'Asked for ' + query});
+  response.render('maps.html', { __geojson__: decodeURIComponent(geojson)});
 });
 
 module.exports = router;
