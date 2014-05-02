@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var maps = require('./routes/maps');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/maps', maps);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
@@ -58,3 +60,8 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
+
+app.listen(3000, function (err) {
+    console.log('CommonsCloudServices, at your service: http://localhost:3000');
+});

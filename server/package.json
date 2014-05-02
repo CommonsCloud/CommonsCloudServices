@@ -1,5 +1,6 @@
 {
-  "name": "application-name",
+  "name": "CommonsCloudServices",
+  "description":"Commons Cloud Services focuses on exporting data from a Commons Cloud API or third-party application in other formats that often require more processing power and longer processing times such as PDF.",
   "version": "0.0.1",
   "private": true,
   "scripts": {
