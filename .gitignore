@@ -1,12 +1,1 @@
-.Python
-.DS_Store
-.idea
-*.sublime-project
-*.sublime-workspace
-*.db
-*.pyc
-moment/conf/production.py
-moment/conf/local.py
-fabfile/sensitive.py
-
-venv
+node_modules
