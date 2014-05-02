@@ -56,17 +56,16 @@ map.fitBounds(feature_layer.getBounds(), {
   maxZoom: 18
 });
 
-for (var feature on geojson_to_print.features) {
-  if (geojson_to_print.hasOwnProperty()) {
-    console.log('feature',feature);
+
+for(feature = 0; i < geojson_to_print.features.length; feature++) {
+    geojson_to_print[feature] = "Do Something Here".
+    console.log('feature', geojson_to_print[feature]);
 
     L.GeoJSON(feature, {
-      style: function(feature) {
-          return feature.properties.style
+      style: function(geojson_to_print[feature]) {
+          return geojson_to_print[feature].properties.style
       }
     }).addTo(map);
-
-  };
 }
 
 </script>
