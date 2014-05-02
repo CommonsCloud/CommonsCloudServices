@@ -10,7 +10,7 @@ router.get('/', function(request, response) {
   var geography_param = url_parts.query['geography'];
   var geojson = JSON.parse(geography_param.replace(/&quot;/g,'"'));
 
-  response.render('maps.html', { __geojson__: geojson});
+  response.render('maps.html', { __geojson__: JSON.stringify(geojson)});
 });
 
 module.exports = router;
