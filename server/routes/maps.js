@@ -9,7 +9,7 @@ router.get('/', function(request, response) {
 
   var geography_param = url_parts.query['geography'];
 
-  response.render('maps.html', { __geojson__: JSON.stringify(geography_param)});
+  response.render('maps.html', { __geojson__: geography_param});
 });
 
 module.exports = router;
