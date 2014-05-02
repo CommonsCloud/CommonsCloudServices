@@ -48,9 +48,26 @@ var geojson = [
   }
 ];
 
-L.mapbox.map('map', 'examples.map-9ijuk24y')
-  .setView([37.8, -96], 4)
-  .featureLayer.setGeoJSON(geojson_to_print);
+var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
+
+var property_boundary = L.GeoJSON(geojson_to_print);
+map.fitBounds(property_boundary.getBounds(), {
+  maxZoom: 18
+});
+
+for (var feature in geojson_to_print) {
+  if (geojson_to_print.hasOwnProperty()) {
+    console.log('feature',feature);
+
+    L.GeoJSON(feature, {
+      style: function(feature) {
+          return feature.properties.style
+      }
+    }).addTo(map);
+
+  };
+}
+
 </script>
 </body>
 </html>
