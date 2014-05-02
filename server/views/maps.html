@@ -56,7 +56,7 @@ map.fitBounds(feature_layer.getBounds(), {
   maxZoom: 18
 });
 
-for (var feature in geojson_to_print) {
+for (var feature in geojson_to_print.features) {
   if (geojson_to_print.hasOwnProperty()) {
     console.log('feature',feature);
 
