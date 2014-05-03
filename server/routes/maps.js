@@ -20,7 +20,7 @@ router.get('/', function(request, response) {
       verbose: true
     }, function (err) {
       console.log('We are in the Node context');
-      spooky.start(requested_map_url);
+      // spooky.start(requested_map_url);
       // spooky.then(function() {
       //   this.capture('/usr/share/nginx/commonscloud.org/subdomains/services/httpdocs/public/grrr-001.png');
       // });
