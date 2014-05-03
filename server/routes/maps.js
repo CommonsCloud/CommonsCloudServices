@@ -14,25 +14,25 @@ router.get('/', function(request, response) {
 
   console.log('requested_map_url', requested_map_url);
 
-  var spooky = new Spooky({
-      child: {
-        transport: 'http'
-      },
-      casper: {
-        logLevel: 'debug',
-        verbose: true
-      }
-    }, function (err) {
-        // console.log('err', err);
-        // console.log('We are in the Node context');
-        // spooky.start(requested_map_url);
-        // spooky.then(function () {
-        //     this.emit('hello', 'Hello, from ' + this.evaluate(function () {
-        //         return document.title;
-        //     }));
-        // });
-        // spooky.run();
-    });
+  // var spooky = new Spooky({
+  //     child: {
+  //       transport: 'http'
+  //     },
+  //     casper: {
+  //       logLevel: 'debug',
+  //       verbose: true
+  //     }
+  //   }, function (err) {
+  //       // console.log('err', err);
+  //       // console.log('We are in the Node context');
+  //       // spooky.start(requested_map_url);
+  //       // spooky.then(function () {
+  //       //     this.emit('hello', 'Hello, from ' + this.evaluate(function () {
+  //       //         return document.title;
+  //       //     }));
+  //       // });
+  //       // spooky.run();
+  //   });
   
 });
 
