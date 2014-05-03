@@ -19,9 +19,9 @@ page.open(system.args[1], function() {
   var extension = system.args[2];
 
   setTimeout(function() {
-    page.render('public/map_' + uuid + '.' + extension);
+    page.render('public/map_' + uuid + '.png');
 
-    var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
+    var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.png';
     console.log(generated_image);
 
     phantom.exit();

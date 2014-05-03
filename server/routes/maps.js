@@ -1,4 +1,3 @@
-var fs = require('fs');
 var express = require('express');
 var router = express.Router();
 var url = require('url');
@@ -29,13 +28,7 @@ router.get('/', function(request, response) {
       var image_url = stdout.substring(0, stdout.length -1);
 
       response.json({'url': image_url});
-
-      // var img = fs.readFileSync(stdout);
-      // response.writeHead(200, {'Content-Type': 'image/png' });
-      // response.end(null, 'binary');
   });
-
-  // response.render('maps.html', { __geojson__: geography_param});
 
 });
 
