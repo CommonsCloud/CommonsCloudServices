@@ -50,15 +50,19 @@ var geojson = [
 
 var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
 
-var featureLayer = L.mapbox.featureLayer();
+var featureGroup = L.mapbox.featureGroup();
 
 for(feature = 0; feature < geojson_to_print.features.length; feature++) {
-    console.log('feature', geojson_to_print.features[feature]);
+  var single_feature = L.geoJson(data, {
+    style: function (this_feature) {
+      return this_feature.properties.styles;
+    }
+  }).addLayer(featureGroup);
 }
 
-featureLayer.on('ready', function() {
-    console.log('ready!');
-    map.fitBounds(featureLayer.getBounds());
+featureGroup.on('ready', function() {
+  console.log('ready!');
+  map.fitBounds(featureGroup.getBounds());
 });
 
 </script>
