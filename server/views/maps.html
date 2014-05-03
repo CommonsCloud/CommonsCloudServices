@@ -50,7 +50,7 @@ var geojson = [
 
 var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
 
-var CCFeatureGroup = L.FeatureGroup();
+var CCFeatureGroup = new L.FeatureGroup();
 map.addLayer(CCFeatureGroup);
 
 for(feature = 0; feature < geojson_to_print.features.length; feature++) {
