@@ -35,7 +35,12 @@ var ChooseTileLayer = function (FeatureCollection) {
   return TileLayer;
 };
 
-var LoadFeatureCollectionWithStyles = function (FeatureGroup, FeatureCollection) {
+var Basemap = ChooseTileLayer(FeatureCollection);
+var Map = L.mapbox.map('map', Basemap);
+
+Map.on('ready', function() {
+  var FeatureGroup = new L.FeatureGroup();
+  Map.addLayer(FeatureGroup);
 
   for(feature = 0; feature < FeatureCollection.features.length; feature++) {
     console.log('styles',FeatureCollection.features[feature].properties.style);
@@ -45,18 +50,7 @@ var LoadFeatureCollectionWithStyles = function (FeatureGroup, FeatureCollection)
     FeatureGroup.addLayer(single_feature);
   };
 
-};
-
-var Basemap = ChooseTileLayer(FeatureCollection);
-var Map = L.mapbox.map('map', Basemap);
-
-Map.on('ready', function() {
-  var FeatureGroup = new L.FeatureGroup();
-  Map.addLayer(FeatureGroup);
-
-  FeatureGroup_ = LoadFeatureCollectionWithStyles(FeatureGroup, FeatureCollection);
-
-  Map.fitBounds(FeatureGroup_.getBounds());
+  Map.fitBounds(FeatureGroup.getBounds());
 });
 
 </script>
