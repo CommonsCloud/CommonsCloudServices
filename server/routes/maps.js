@@ -29,10 +29,11 @@ router.get('/', function(request, response) {
     spooky.then(function() {
       // CASPERJS CONTEXT
       var size = this.evaluate(function() {
-      // PAGE CONTEXT
-      console.log('....'); // DOES NOT GET PRINTED OUT
-      __utils__.echo('We are in the Page context'); // Gets printed out
-      this.capture('screenshot.png');
+        // PAGE CONTEXT
+        console.log('....'); // DOES NOT GET PRINTED OUT
+        __utils__.echo('We are in the Page context'); // Gets printed out
+        this.capture('screenshot.png');
+      });
     });
   });
 
