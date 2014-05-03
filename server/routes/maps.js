@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var url = require('url');
-var phantom = require('phantom');
+var Spooky = require('spooky');
 
 /* GET home page. */
 router.get('/', function(request, response) {
@@ -10,26 +10,32 @@ router.get('/', function(request, response) {
 
   var geography_param = url_parts.query['geography'];
 
-  // var requested_map_url = 'http://services.commonscloud.org/maps/live?' + geography_param
+  var requested_map_url = 'http://services.commonscloud.org/maps/live?' + geography_param
 
-  var requested_map_url = 'http://www.google.com/';
-
-  phantom.create(function(ph) {
-    ph.createPage(function(page) {
-      page.open(requested_map_url, function(status) {
-        console.log('Opened site? %s', status);
-        page.evaluate(
-          function (status) {
-            console.log('status', status);
-            return page.render('example.png');
-          },
-          function (result) {
-            console.log('result', result);
-            ph.exit();
-          });
-      });
+  var spooky = new Spooky({
+      casper: {
+         logLevel: 'error',
+         verbose: false
+      }
+    }, function (err) {
+    // NODE CONTEXT
+    console.log('We are in the Node context');
+    spooky.start(requested_map_url);
+    spooky.then(function() {
+      // CASPERJS CONTEXT
+      console.log('We are in the CasperJS context');
+      this.emit('console', 'We can also emit events here.');
+    });
+    spooky.then(function() {
+      // CASPERJS CONTEXT
+      var size = this.evaluate(function() {
+      // PAGE CONTEXT
+      console.log('....'); // DOES NOT GET PRINTED OUT
+      __utils__.echo('We are in the Page context'); // Gets printed out
+      this.capture('screenshot.png');
     });
   });
+
 });
 
 /* GET home page. */
