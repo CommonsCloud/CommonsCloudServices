@@ -56,7 +56,7 @@ var tiles = {
 
 var tileLayer = tiles['street'];
 
-if (geojson_to_print.properties.hasOwnProperty(tileLayer))
+if (geojson_to_print.properties.hasOwnProperty(tileLayer)) {
   tileLayer = tiles[geojson_to_print.properties.tileLayer];
 }
 
