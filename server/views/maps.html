@@ -18,32 +18,39 @@
 <script>
 var geojson_to_print = <%- __geojson__ %>;
 
-var tiles = {
-  'street': 'developedsimple.i53fbg0j',
-  'terrain': 'developedsimple.i53fmdgl',
-  'satellite': 'developedsimple.i53fp4f1'
+var ChooseTileLayer = function (FeatureCollection) {
+
+  var tiles = {
+    'street': 'developedsimple.i53fbg0j',
+    'terrain': 'developedsimple.i53fmdgl',
+    'satellite': 'developedsimple.i53fp4f1'
+  };
+
+  var tileLayer = tiles['street'];
+
+  if (geojson_to_print.properties.tileLayer) {
+    tileLayer = tiles[geojson_to_print.properties.tileLayer];
+  }
+
+  return tileLayer;
 };
 
-var tileLayer = tiles['street'];
+var map = L.mapbox.map('map');
 
-if (geojson_to_print.properties.tileLayer) {
-  tileLayer = tiles[geojson_to_print.properties.tileLayer];
-}
 
-var map = L.mapbox.map('map', tileLayer);
 
-var CCFeatureGroup = new L.FeatureGroup();
-map.addLayer(CCFeatureGroup);
+// var CCFeatureGroup = new L.FeatureGroup();
+// map.addLayer(CCFeatureGroup);
 
-for(feature = 0; feature < geojson_to_print.features.length; feature++) {
-  console.log('styles',geojson_to_print.features[feature].properties.style);
-  var single_feature = L.geoJson(geojson_to_print.features[feature], {
-    style: geojson_to_print.features[feature].properties.style
-  });
-  CCFeatureGroup.addLayer(single_feature);
-};
+// for(feature = 0; feature < geojson_to_print.features.length; feature++) {
+//   console.log('styles',geojson_to_print.features[feature].properties.style);
+//   var single_feature = L.geoJson(geojson_to_print.features[feature], {
+//     style: geojson_to_print.features[feature].properties.style
+//   });
+//   CCFeatureGroup.addLayer(single_feature);
+// };
 
-map.fitBounds(CCFeatureGroup.getBounds());
+// map.fitBounds(CCFeatureGroup.getBounds());
 
 
 map.on('ready', function() {
