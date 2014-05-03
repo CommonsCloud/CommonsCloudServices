@@ -35,20 +35,24 @@ var ChooseTileLayer = function (FeatureCollection) {
   return TileLayer;
 };
 
+var LoadFeatureCollectionWithStyles = function (Map, FeatureCollection) {
+
+  var FeatureGroup = new L.FeatureGroup();
+  Map.addLayer(FeatureGroup);
+
+  for(feature = 0; feature < FeatureCollection.features.length; feature++) {
+    console.log('styles',FeatureCollection.features[feature].properties.style);
+    var single_feature = L.geoJson(FeatureCollection.features[feature], {
+      style: FeatureCollection.features[feature].properties.style
+    });
+    FeatureGroup.addLayer(single_feature);
+  };
+
+};
+
 
 var basemap = ChooseTileLayer(geojson_to_print);
 var map = L.mapbox.map('map', basemap);
-
-// var CCFeatureGroup = new L.FeatureGroup();
-// map.addLayer(CCFeatureGroup);
-
-// for(feature = 0; feature < geojson_to_print.features.length; feature++) {
-//   console.log('styles',geojson_to_print.features[feature].properties.style);
-//   var single_feature = L.geoJson(geojson_to_print.features[feature], {
-//     style: geojson_to_print.features[feature].properties.style
-//   });
-//   CCFeatureGroup.addLayer(single_feature);
-// };
 
 // map.fitBounds(CCFeatureGroup.getBounds());
 
@@ -57,6 +61,7 @@ map.on('ready', function() {
   // the layer has been fully loaded now, and you can
   // call .getTileJSON and investigate its properties
   console.log('map is ready to use');
+  LoadFeatureCollectionWithStyles(geojson_to_print);
 });
 
 </script>
