@@ -48,9 +48,7 @@
 
       var TileLayer = Tiles['street'];
 
-      if (tileLayer in FeatureCollection.properties) {
-        TileLayer = Tiles[FeatureCollection.properties.tileLayer];
-      }
+      TileLayer = Tiles[FeatureCollection.properties.tileLayer];
 
       return TileLayer;
     };
