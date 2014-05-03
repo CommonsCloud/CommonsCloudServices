@@ -13,7 +13,7 @@ function guid() {
 var uuid = guid();
 var request_url = 
 
-page.viewportSize = { width: 500, height: 500 };
+page.viewportSize = { width: 600, height: 800 };
 page.open(system.args[1], function() {
 
   var extension = (system.args[2] !== 'undefined') ? system.args[2]: 'png';
