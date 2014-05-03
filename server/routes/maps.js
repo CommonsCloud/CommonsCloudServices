@@ -23,43 +23,17 @@ router.get('/', function(request, response) {
         verbose: true
       }
     }, function (err) {
-        if (err) {
-          e = new Error('Failed to initialize SpookyJS');
-          e.details = err;
-          throw e;
-        }
-
+        console.log('err', err);
+        console.log('We are in the Node context');
+        spooky.start(requested_map_url);
+        spooky.then(function () {
+            this.emit('hello', 'Hello, from ' + this.evaluate(function () {
+                return document.title;
+            }));
+        });
         spooky.run();
-      // console.log('We are in the Node context');
-      // spooky.start(requested_map_url);
-      // spooky.then(function() {
-      //   this.capture('/usr/share/nginx/commonscloud.org/subdomains/services/httpdocs/public/grrr-001.png');
-      // });
     });
-  //     casper: {
-  //        logLevel: 'error',
-  //        verbose: false
-  //     }
-  //   }, function (err) {
-  //   // NODE CONTEXT
-  //   console.log('We are in the Node context');
-  //   spooky.start(requested_map_url);
-  //   spooky.then(function() {
-  //     // CASPERJS CONTEXT
-  //     console.log('We are in the CasperJS context');
-  //     this.emit('console', 'We can also emit events here.');
-  //   });
-  //   spooky.then(function() {
-  //     // CASPERJS CONTEXT
-  //     var size = this.evaluate(function() {
-  //       // PAGE CONTEXT
-  //       console.log('....'); // DOES NOT GET PRINTED OUT
-  //       __utils__.echo('We are in the Page context'); // Gets printed out
-  //       this.capture('screenshot.png');
-  //     });
-  //   });
-  // });
-
+  
 });
 
 /* GET home page. */
