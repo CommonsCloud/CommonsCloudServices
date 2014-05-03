@@ -15,15 +15,15 @@ router.get('/', function(request, response) {
 
   console.log('requested_map_url', requested_map_url);
 
-  var spooky = new Spooky({
-      child: {
-        transport: 'http'
-      },
-      casper: {
-        logLevel: 'debug',
-        verbose: true
-      }
-    });
+  // var spooky = new Spooky({
+  //     child: {
+  //       transport: 'http'
+  //     },
+  //     casper: {
+  //       logLevel: 'debug',
+  //       verbose: true
+  //     }
+  //   });
 
   // spooky.on('error', function (e, stack) {
   //     console.error(e);
