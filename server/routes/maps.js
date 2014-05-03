@@ -15,9 +15,13 @@ router.get('/', function(request, response) {
   console.log('requested_map_url', requested_map_url);
 
   var spooky = new Spooky({
-    casper: {
-      logLevel: 'debug',
-      verbose: true
+      child: {
+        transport: 'http'
+      },
+      casper: {
+        logLevel: 'debug',
+        verbose: true
+      }
     }, function (err) {
         if (err) {
           e = new Error('Failed to initialize SpookyJS');
@@ -31,8 +35,7 @@ router.get('/', function(request, response) {
       // spooky.then(function() {
       //   this.capture('/usr/share/nginx/commonscloud.org/subdomains/services/httpdocs/public/grrr-001.png');
       // });
-    }
-  });
+    });
   //     casper: {
   //        logLevel: 'error',
   //        verbose: false
