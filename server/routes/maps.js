@@ -42,7 +42,6 @@ router.get('/pdf', function(request, response) {
   var format = url_parts.query['format'];
 
   var requested_map_url = 'http://services.commonscloud.org/maps/live?geography=' + geography_param;
-  var requested_map_url = 'http://test.stormwaterguide.org/#/print-your-plan';
 
   console.log('requested_map_url', requested_map_url);
   var command = 'phantomjs generate_pdf.js ' + JSON.stringify(requested_map_url) + ' ' + format;
