@@ -15,7 +15,9 @@ router.get('/', function(request, response) {
 
   console.log('requested_map_url', requested_map_url);
 
-  child = exec('phantomjs generate.js',
+  child = exec('phantomjs generate.js', {
+      'url': requested_map_url
+    },
     function (error, stdout, stderr) {
       if (error !== null) {
         console.log('exec error: ' + error);
