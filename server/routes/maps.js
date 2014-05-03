@@ -20,7 +20,7 @@ router.get('/', function(request, response) {
 
   console.log('requested_map_url', requested_map_url);
 
-  var spooky = new Spooky();
+  var spooky_ = new Spooky();
 
   // var spooky = new Spooky({
   //     child: {
@@ -32,13 +32,13 @@ router.get('/', function(request, response) {
   //     }
   //   });
 
-  // spooky.on('error', function (e, stack) {
-  //     console.error(e);
+  spooky_.on('error', function (e, stack) {
+      console.error(e);
 
-  //     if (stack) {
-  //         console.log(stack);
-  //     }
-  // });
+      if (stack) {
+          console.log(stack);
+      }
+  });
 
   // spooky.on('console', function (line) {
   //   console.log(line);
