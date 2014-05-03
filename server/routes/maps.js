@@ -6,6 +6,11 @@ var exec = require('child_process').exec, child;
 
 router.get('/', function(request, response) {
 
+  response.writeHead(200, {
+    'Content-Type': 'applications/json',
+    'Access-Control-Allow-Origin' : '*'
+  });
+
   var url_parts = url.parse(request.url, true);
 
   var geography_param = url_parts.query['geography'];
@@ -24,11 +29,6 @@ router.get('/', function(request, response) {
       }
 
       var image_url = stdout;
-
-      response.writeHead(200, {
-        'Content-Type': 'applications/json',
-        'Access-Control-Allow-Origin' : '*'
-      });
 
       response.json({
         'url': image_url
