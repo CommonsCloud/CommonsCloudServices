@@ -21,7 +21,6 @@ page.open(system.args[1], function() {
 
     var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.png';
 
-    console.log('generated_image', generated_image);
     phantom.exit();
     return generated_image;
   }, 2000);
