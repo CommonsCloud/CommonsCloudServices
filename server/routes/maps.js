@@ -13,16 +13,22 @@ router.get('/', function(request, response) {
   var requested_map_url = 'http://services.commonscloud.org/maps/live?' + geography_param;
 
   console.log('requested_map_url', requested_map_url);
+  var command = 'phantomjs generate.js ' + requested_map_url;
 
-  child = exec('phantomjs generate.js ' + requested_map_url,
+  console.log('command', command);
+
+  child = exec(command,
     function (error, stdout, stderr) {
       if (error !== null) {
         console.log('exec error: ' + error);
       }
 
-      var img = fs.readFileSync(stdout);
-      response.writeHead(200, {'Content-Type': 'image/png' });
-      response.end(img, 'binary');
+      console.log(stdout);
+      return true;
+
+      // var img = fs.readFileSync(stdout);
+      // response.writeHead(200, {'Content-Type': 'image/png' });
+      // response.end(img, 'binary');
   });
 
 });
