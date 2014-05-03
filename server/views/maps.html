@@ -51,13 +51,12 @@ var Basemap = ChooseTileLayer(FeatureCollection);
 var Map = L.mapbox.map('map', Basemap);
 
 Map.on('ready', function() {
-  // the layer has been fully loaded now, and you can
-  // call .getTileJSON and investigate its properties
-  console.log('map is ready to use');
   var FeatureGroup = new L.FeatureGroup();
   Map.addLayer(FeatureGroup);
-  // LoadFeatureCollectionWithStyles(FeatureCollection);
-  // Map.fitBounds(FeatureGroup.getBounds());
+
+  LoadFeatureCollectionWithStyles(FeatureCollection);
+
+  Map.fitBounds(FeatureGroup.getBounds());
 });
 
 </script>
