@@ -48,7 +48,7 @@
 
       var TileLayer = Tiles['street'];
 
-      if (FeatureCollection.properties.tileLayer) {
+      if (typeof(FeatureCollection.properties.tileLayer) !== 'undefined') {
         TileLayer = Tiles[FeatureCollection.properties.tileLayer];
       }
 
