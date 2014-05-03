@@ -13,18 +13,17 @@ function guid() {
 var uuid = guid();
 var request_url = 
 
-system.args.forEach(function(arg, i) {
-      console.log(i + ': ' + arg);
-});
-
-
 page.viewportSize = { width: 600, height: 800 };
 page.open(system.args[1], function() {
 
   setTimeout(function() {
     page.render('public/map_' + uuid + '.png');
-    console.log('http://services.commonscloud.org/map_' + uuid + '.png' );
+
+    var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.png';
+
+    console.log('generated_image', generated_image);
     phantom.exit();
+    return generated_image;
   }, 2000);
 
 });
