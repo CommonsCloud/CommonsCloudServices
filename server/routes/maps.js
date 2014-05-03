@@ -25,27 +25,27 @@ router.get('/', function(request, response) {
       }
     });
 
-  spooky.on('error', function (e, stack) {
-      console.error(e);
+  // spooky.on('error', function (e, stack) {
+  //     console.error(e);
 
-      if (stack) {
-          console.log(stack);
-      }
-  });
+  //     if (stack) {
+  //         console.log(stack);
+  //     }
+  // });
 
-  spooky.on('console', function (line) {
-    console.log(line);
-  });
+  // spooky.on('console', function (line) {
+  //   console.log(line);
+  // });
 
-  spooky.on('hello', function (greeting) {
-      console.log(greeting);
-  });
+  // spooky.on('hello', function (greeting) {
+  //     console.log(greeting);
+  // });
 
-  spooky.on('log', function (log) {
-      if (log.space === 'remote') {
-          console.log(log.message.replace(/ \- .*/, ''));
-      }
-  });
+  // spooky.on('log', function (log) {
+  //     if (log.space === 'remote') {
+  //         console.log(log.message.replace(/ \- .*/, ''));
+  //     }
+  // });
 
   // response.render('maps.html', { __geojson__: geography_param});
 
