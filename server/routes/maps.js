@@ -11,11 +11,8 @@ router.get('/', function(request, response) {
   var geography_param = url_parts.query['geography'];
 
   var requested_map_url = 'http://services.commonscloud.org/maps/live?' + geography_param;
-  // var requested_map_url = 'http://www.chesapeakecommons.org';
 
-  console.log('requested_map_url', requested_map_url);
-
-  child = exec('phantomjs generate.js', {
+  child = exec('phantomjs generate.js ' + requested_map_url, {
       'url': requested_map_url
     },
     function (error, stdout, stderr) {
