@@ -26,7 +26,7 @@ var ChooseTileLayer = function (FeatureCollection) {
     'satellite': 'developedsimple.i53fp4f1'
   };
 
-  var TileLayer = tiles['street'];
+  var TileLayer = Tiles['street'];
 
   if (FeatureCollection.properties.tileLayer) {
     TileLayer = Tiles[FeatureCollection.properties.tileLayer];
