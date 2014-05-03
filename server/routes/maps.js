@@ -1,15 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var url = require('url');
+var phantom = require 'phantom';
 
 /* GET home page. */
 router.get('/', function(request, response) {
 
-  var url_parts = url.parse(request.url, true);
+  phantom.create(function(ph) {
+    ph.createPage(function(page) {
+      page.open(request.url, function(status) {
+        console.log('Opened site? %s', status);
+        page.render('grr.png');
+        ph.exit();
+      });
+    });
+  });
 
-  var geography_param = url_parts.query['geography'];
-
-  response.render('maps.html', { __geojson__: geography_param});
 });
 
 /* GET home page. */
