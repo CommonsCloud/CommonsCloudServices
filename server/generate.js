@@ -16,7 +16,7 @@ var request_url =
 page.viewportSize = { width: 532, height: 712 };
 page.open(system.args[1], function() {
 
-  var extension = (system.args[2] !== 'undefined') ? system.args[2]: 'png';
+  var extension = 'png';
 
   setTimeout(function() {
     page.render('public/map_' + uuid + '.' + extension);
