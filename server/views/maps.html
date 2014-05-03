@@ -54,7 +54,7 @@ var tiles = {
   'satellite': 'developedsimple.i53fp4f1'
 };
 
-var map = L.mapbox.map('map', tiles[geojson_to_print.properties.tileLayer]);
+var map = L.mapbox.map('map', tiles[geojson_to_print.properties.tileLayer] || tiles[street]);
 
 var CCFeatureGroup = new L.FeatureGroup();
 map.addLayer(CCFeatureGroup);
