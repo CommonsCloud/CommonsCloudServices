@@ -1,14 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var url = require('url');
-try {
-    var Spooky = require('spooky');
-    console.log('Spooky loaded.');
-} catch (e) {
-    console.log('No Spooky friend.');
-    var Spooky = require('../lib/spooky');
-}
-/* GET home page. */
+var exec = require('child_process').exec, child;
+
 router.get('/', function(request, response) {
 
   var url_parts = url.parse(request.url, true);
@@ -20,41 +14,14 @@ router.get('/', function(request, response) {
 
   console.log('requested_map_url', requested_map_url);
 
-  var spooky_ = new Spooky();
-
-  // var spooky = new Spooky({
-  //     child: {
-  //       transport: 'http'
-  //     },
-  //     casper: {
-  //       logLevel: 'debug',
-  //       verbose: true
-  //     }
-  //   });
-
-  spooky_.on('error', function (e, stack) {
-      console.error(e);
-
-      if (stack) {
-          console.log(stack);
+  child = exec('phantomjs hello.js',
+    function (error, stdout, stderr) {
+      console.log('stdout: ' + stdout);
+      console.log('stderr: ' + stderr);
+      if (error !== null) {
+        console.log('exec error: ' + error);
       }
   });
-
-  // spooky.on('console', function (line) {
-  //   console.log(line);
-  // });
-
-  // spooky.on('hello', function (greeting) {
-  //     console.log(greeting);
-  // });
-
-  // spooky.on('log', function (log) {
-  //     if (log.space === 'remote') {
-  //         console.log(log.message.replace(/ \- .*/, ''));
-  //     }
-  // });
-
-  // response.render('maps.html', { __geojson__: geography_param});
 
 });
 
