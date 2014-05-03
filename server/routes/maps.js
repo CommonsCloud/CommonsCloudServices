@@ -30,7 +30,7 @@ router.get('/', function(request, response) {
       // response.end(img, 'binary');
   });
 
-  response.render('maps.html', { __geojson__: geography_param});
+  // response.render('maps.html', { __geojson__: geography_param});
 
 });
 
