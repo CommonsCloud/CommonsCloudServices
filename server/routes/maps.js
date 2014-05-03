@@ -19,7 +19,14 @@ router.get('/', function(request, response) {
       logLevel: 'debug',
       verbose: true
     }, function (err) {
-      console.log('We are in the Node context');
+        if (err) {
+          e = new Error('Failed to initialize SpookyJS');
+          e.details = err;
+          throw e;
+        }
+
+        spooky.run();
+      // console.log('We are in the Node context');
       // spooky.start(requested_map_url);
       // spooky.then(function() {
       //   this.capture('/usr/share/nginx/commonscloud.org/subdomains/services/httpdocs/public/grrr-001.png');
