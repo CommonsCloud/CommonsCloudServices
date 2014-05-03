@@ -30,8 +30,6 @@ router.get('/', function(request, response) {
       });
     });
   });
-
-  response.ren
 });
 
 /* GET home page. */
