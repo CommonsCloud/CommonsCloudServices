@@ -13,7 +13,7 @@ function guid() {
 var uuid = guid();
 var request_url = 
 
-args.forEach(function(arg, i) {
+system.args.forEach(function(arg, i) {
       console.log(i + ': ' + arg);
 });
 
