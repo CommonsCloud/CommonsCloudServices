@@ -14,30 +14,30 @@ router.get('/', function(request, response) {
 
   console.log('requested_map_url', requested_map_url);
 
-  var spooky = new Spooky({
-      casper: {
-         logLevel: 'error',
-         verbose: false
-      }
-    }, function (err) {
-    // NODE CONTEXT
-    console.log('We are in the Node context');
-    spooky.start(requested_map_url);
-    spooky.then(function() {
-      // CASPERJS CONTEXT
-      console.log('We are in the CasperJS context');
-      this.emit('console', 'We can also emit events here.');
-    });
-    spooky.then(function() {
-      // CASPERJS CONTEXT
-      var size = this.evaluate(function() {
-        // PAGE CONTEXT
-        console.log('....'); // DOES NOT GET PRINTED OUT
-        __utils__.echo('We are in the Page context'); // Gets printed out
-        this.capture('screenshot.png');
-      });
-    });
-  });
+  // var spooky = new Spooky({
+  //     casper: {
+  //        logLevel: 'error',
+  //        verbose: false
+  //     }
+  //   }, function (err) {
+  //   // NODE CONTEXT
+  //   console.log('We are in the Node context');
+  //   spooky.start(requested_map_url);
+  //   spooky.then(function() {
+  //     // CASPERJS CONTEXT
+  //     console.log('We are in the CasperJS context');
+  //     this.emit('console', 'We can also emit events here.');
+  //   });
+  //   spooky.then(function() {
+  //     // CASPERJS CONTEXT
+  //     var size = this.evaluate(function() {
+  //       // PAGE CONTEXT
+  //       console.log('....'); // DOES NOT GET PRINTED OUT
+  //       __utils__.echo('We are in the Page context'); // Gets printed out
+  //       this.capture('screenshot.png');
+  //     });
+  //   });
+  // });
 
 });
 
