@@ -45,16 +45,18 @@ router.get('/pdf', function(request, response) {
   console.log('requested_map_url', requested_map_url);
   var command = 'phantomjs generate_pdf.js ' + JSON.stringify(requested_map_url);
 
-  child = exec(command,
-    function (error, stdout, stderr) {
-      if (error !== null) {
-        console.log('exec error: ' + error);
-      }
+  // child = exec(command,
+  //   function (error, stdout, stderr) {
+  //     if (error !== null) {
+  //       console.log('exec error: ' + error);
+  //     }
 
-      var image_url = stdout.substring(0, stdout.length -1);
+  //     var image_url = stdout.substring(0, stdout.length -1);
 
-      response.json({'url': image_url});
-  });
+  //     response.json({'url': image_url});
+  // });
+
+  response.json({'url': request.data});
 
 });
 
