@@ -1,8 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var url = require('url');
-var Spooky = require('spooky');
-
+try {
+    var Spooky = require('spooky');
+    console.log('Spooky loaded.');
+} catch (e) {
+    console.log('No Spooky friend.');
+    var Spooky = require('../lib/spooky');
+}
 /* GET home page. */
 router.get('/', function(request, response) {
 
