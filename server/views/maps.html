@@ -45,6 +45,13 @@ for(feature = 0; feature < geojson_to_print.features.length; feature++) {
 
 map.fitBounds(CCFeatureGroup.getBounds());
 
+
+map.on('ready', function() {
+  // the layer has been fully loaded now, and you can
+  // call .getTileJSON and investigate its properties
+  console.log('map is ready to use');
+});
+
 </script>
 </body>
 </html>
