@@ -18,11 +18,12 @@ page.open(system.args[1], function() {
 
   setTimeout(function() {
     page.render('public/map_' + uuid + '.png');
+    phantom.exit();
 
     var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.png';
-
     console.log(generated_image);
-    phantom.exit();
+
+    return true;
   }, 2000);
 
 });
