@@ -20,7 +20,7 @@ page.open(system.args[1], function() {
     page.render('public/map_' + uuid + '.png');
 
     var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.png';
-    console.log(generated_image);
+    console.log(generated_image.replace('\\n', ''));
 
     phantom.exit();
   }, 2000);
