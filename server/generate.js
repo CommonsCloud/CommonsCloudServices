@@ -16,10 +16,12 @@ var request_url =
 page.viewportSize = { width: 600, height: 800 };
 page.open(system.args[1], function() {
 
-  setTimeout(function() {
-    page.render('public/map_' + uuid + '.png');
+  var extension = system.args[1];
 
-    var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.png';
+  setTimeout(function() {
+    page.render('public/map_' + uuid + '.' + extension);
+
+    var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
     console.log(generated_image);
 
     phantom.exit();
