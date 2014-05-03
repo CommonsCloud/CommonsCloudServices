@@ -23,15 +23,15 @@ router.get('/', function(request, response) {
         verbose: true
       }
     }, function (err) {
-        // console.log('err', err);
-        // console.log('We are in the Node context');
-        // spooky.start(requested_map_url);
-        // spooky.then(function () {
-        //     this.emit('hello', 'Hello, from ' + this.evaluate(function () {
-        //         return document.title;
-        //     }));
-        // });
-        // spooky.run();
+        console.log('err', err);
+        console.log('We are in the Node context');
+        spooky.start(requested_map_url);
+        spooky.then(function () {
+            this.emit('hello', 'Hello, from ' + this.evaluate(function () {
+                return document.title;
+            }));
+        });
+        spooky.run();
     });
 
   spooky.on('error', function (e, stack) {
