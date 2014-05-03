@@ -55,7 +55,7 @@ map.addLayer(CCFeatureGroup);
 
 for(feature = 0; feature < geojson_to_print.features.length; feature++) {
   var single_feature = L.geoJson(geojson_to_print.features[feature], {
-    style: this_feature.properties.styles
+    style: geojson_to_print.features[feature].properties.styles
   });
   CCFeatureGroup.addLayer(single_feature);
 }
