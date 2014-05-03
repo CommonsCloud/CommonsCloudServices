@@ -53,7 +53,7 @@ var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
 var featureGroup = L.featureGroup();
 
 for(feature = 0; feature < geojson_to_print.features.length; feature++) {
-  var single_feature = L.geoJson(data, {
+  var single_feature = L.geoJson(geojson_to_print.features[feature], {
     style: function (this_feature) {
       return this_feature.properties.styles;
     }
