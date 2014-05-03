@@ -23,6 +23,8 @@ router.get('/', function(request, response) {
         console.log('exec error: ' + error);
       }
 
+      console.log('stdout', stdout);
+
       var img = fs.readFileSync(stdout);
       response.writeHead(200, {'Content-Type': 'image/png' });
       response.end(img, 'binary');
