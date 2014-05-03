@@ -1,3 +1,4 @@
+var fs = require('fs');
 var express = require('express');
 var router = express.Router();
 var url = require('url');
@@ -9,18 +10,20 @@ router.get('/', function(request, response) {
 
   var geography_param = url_parts.query['geography'];
 
-  // var requested_map_url = 'http://services.commonscloud.org/maps/live?';
-  var requested_map_url = 'http://www.chesapeakecommons.org';
+  var requested_map_url = 'http://services.commonscloud.org/maps/live?' + geography_param;
+  // var requested_map_url = 'http://www.chesapeakecommons.org';
 
   console.log('requested_map_url', requested_map_url);
 
-  child = exec('phantomjs hello.js',
+  child = exec('phantomjs generate.js',
     function (error, stdout, stderr) {
-      console.log('stdout: ' + stdout);
-      console.log('stderr: ' + stderr);
       if (error !== null) {
         console.log('exec error: ' + error);
       }
+
+      var img = fs.readFileSync(stdout);
+      response.writeHead(200, {'Content-Type': 'image/png' });
+      response.end(img, 'binary');
   });
 
 });
