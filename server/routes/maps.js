@@ -25,6 +25,11 @@ router.get('/', function(request, response) {
 
       var image_url = stdout;
 
+      response.writeHead(200, {
+        'Content-Type': 'applications/json',
+        'Access-Control-Allow-Origin' : '*'
+      });
+
       response.json({
         'url': image_url
       });
