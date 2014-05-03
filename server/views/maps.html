@@ -65,7 +65,7 @@ for(feature = 0; feature < geojson_to_print.features.length; feature++) {
     style: geojson_to_print.features[feature].properties.style
   });
   CCFeatureGroup.addLayer(single_feature);
-}
+};
 
 map.fitBounds(CCFeatureGroup.getBounds());
 
