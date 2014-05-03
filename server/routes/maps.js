@@ -16,7 +16,7 @@ router.get('/', function(request, response) {
     ph.createPage(function(page) {
       page.open(requested_map_url, function(status) {
         console.log('Opened site? %s', status);
-        page.render('grr.png');
+        // page.render('grr.png');
         ph.exit();
       });
     });
