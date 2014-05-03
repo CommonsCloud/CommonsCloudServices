@@ -56,9 +56,6 @@ var tiles = {
 
 var map = L.mapbox.map('map', tiles[geojson_to_print.properties.tileLayer]);
 
-map.addLayer(MapboxBasemap);
-
-
 var CCFeatureGroup = new L.FeatureGroup();
 map.addLayer(CCFeatureGroup);
 
