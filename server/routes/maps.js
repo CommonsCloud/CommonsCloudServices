@@ -13,7 +13,7 @@ router.get('/', function(request, response) {
   var requested_map_url = 'http://services.commonscloud.org/maps/live?geography=' + geography_param;
 
   console.log('requested_map_url', requested_map_url);
-  var command = 'phantomjs generate.js ' + requested_map_url;
+  var command = 'phantomjs generate.js "' + requested_map_url + '"';
 
   console.log('command', command);
 
