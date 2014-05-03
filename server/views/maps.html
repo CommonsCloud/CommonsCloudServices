@@ -35,7 +35,7 @@ var ChooseTileLayer = function (FeatureCollection) {
   return TileLayer;
 };
 
-var LoadFeatureCollectionWithStyles = function (FeatureCollection) {
+var LoadFeatureCollectionWithStyles = function (FeatureGroup, FeatureCollection) {
 
   for(feature = 0; feature < FeatureCollection.features.length; feature++) {
     console.log('styles',FeatureCollection.features[feature].properties.style);
@@ -54,9 +54,9 @@ Map.on('ready', function() {
   var FeatureGroup = new L.FeatureGroup();
   Map.addLayer(FeatureGroup);
 
-  LoadFeatureCollectionWithStyles(FeatureCollection);
+  FeatureGroup_ = LoadFeatureCollectionWithStyles(FeatureGroup, FeatureCollection);
 
-  Map.fitBounds(FeatureGroup.getBounds());
+  Map.fitBounds(FeatureGroup_.getBounds());
 });
 
 </script>
