@@ -13,17 +13,24 @@ router.get('/', function(request, response) {
   // var requested_map_url = 'http://services.commonscloud.org/maps/live?' + geography_param
 
   var requested_map_url = 'http://www.google.com/';
-  
+
   phantom.create(function(ph) {
     ph.createPage(function(page) {
       page.open(requested_map_url, function(status) {
         console.log('Opened site? %s', status);
-        // page.render('grr.png');
-        ph.exit();
+        page.evaluate(
+          function (status) {
+            console.log('status', status);
+          },
+          function (result) {
+            console.log('result', result);
+            ph.exit();
+          });
       });
     });
   });
 
+  response.ren
 });
 
 /* GET home page. */
