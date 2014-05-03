@@ -16,7 +16,7 @@
 <body>
 <div id='map'></div>
 <script>
-var geojson_to_print = <%- __geojson__ %>;
+var FeatureCollection = <%- __geojson__ %>;
 
 var ChooseTileLayer = function (FeatureCollection) {
 
@@ -35,10 +35,7 @@ var ChooseTileLayer = function (FeatureCollection) {
   return TileLayer;
 };
 
-var LoadFeatureCollectionWithStyles = function (Map, FeatureCollection) {
-
-  var FeatureGroup = new L.FeatureGroup();
-  Map.addLayer(FeatureGroup);
+var LoadFeatureCollectionWithStyles = function (FeatureCollection) {
 
   for(feature = 0; feature < FeatureCollection.features.length; feature++) {
     console.log('styles',FeatureCollection.features[feature].properties.style);
@@ -50,18 +47,17 @@ var LoadFeatureCollectionWithStyles = function (Map, FeatureCollection) {
 
 };
 
-
-var basemap = ChooseTileLayer(geojson_to_print);
-var map = L.mapbox.map('map', basemap);
-
-// map.fitBounds(CCFeatureGroup.getBounds());
-
+var Basemap = ChooseTileLayer(FeatureCollection);
+var Map = L.mapbox.map('map', Basemap);
 
 map.on('ready', function() {
   // the layer has been fully loaded now, and you can
   // call .getTileJSON and investigate its properties
   console.log('map is ready to use');
-  LoadFeatureCollectionWithStyles(geojson_to_print);
+  var FeatureGroup = new L.FeatureGroup();
+  map.addLayer(FeatureGroup);
+  // LoadFeatureCollectionWithStyles(geojson_to_print);
+  // map.fitBounds(CCFeatureGroup.getBounds());
 });
 
 </script>
