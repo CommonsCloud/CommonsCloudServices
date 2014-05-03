@@ -14,7 +14,7 @@ router.get('/', function(request, response) {
 
   console.log('requested_map_url', requested_map_url);
 
-  // var spooky = new Spooky({
+  var spooky = new Spooky();
   //     casper: {
   //        logLevel: 'error',
   //        verbose: false
