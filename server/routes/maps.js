@@ -10,8 +10,10 @@ router.get('/', function(request, response) {
 
   var geography_param = url_parts.query['geography'];
 
-  var requested_map_url = 'http://services.commonscloud.org/maps/live?' + geography_param
+  // var requested_map_url = 'http://services.commonscloud.org/maps/live?' + geography_param
 
+  var requested_map_url = 'http://www.google.com/';
+  
   phantom.create(function(ph) {
     ph.createPage(function(page) {
       page.open(requested_map_url, function(status) {
