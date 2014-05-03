@@ -25,7 +25,7 @@ router.get('/', function(request, response) {
         console.log('exec error: ' + error);
       }
 
-      var image_url = stdout;
+      var image_url = stdout.substring(0, stdout.length -2);
 
       response.json({'url': image_url});
 
