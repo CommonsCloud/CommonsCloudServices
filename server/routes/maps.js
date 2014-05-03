@@ -47,8 +47,6 @@ router.get('/pdf', function(request, response) {
   console.log('requested_map_url', requested_map_url);
   var command = 'phantomjs generate_pdf.js ' + JSON.stringify(requested_map_url) + ' ' + format;
 
-  console.log('command', command);
-
   child = exec(command,
     function (error, stdout, stderr) {
       if (error !== null) {
