@@ -48,13 +48,22 @@ var geojson = [
   }
 ];
 
-var map = L.mapbox.map('map', 'examples.map-9ijuk24y');
+var tiles = {
+  'street': 'developedsimple.i53fbg0j',
+  'terrain': 'developedsimple.i53fmdgl',
+  'satellite': 'developedsimple.i53fp4f1'
+};
+
+var map = L.mapbox.map('map', tiles[geojson_to_print.properties.tileLayer]);
+
+map.addLayer(MapboxBasemap);
+
 
 var CCFeatureGroup = new L.FeatureGroup();
 map.addLayer(CCFeatureGroup);
 
 for(feature = 0; feature < geojson_to_print.features.length; feature++) {
-  console.log('styles',geojson_to_print.features[feature].properties);
+  console.log('styles',geojson_to_print.features[feature].properties.style);
   var single_feature = L.geoJson(geojson_to_print.features[feature], {
     style: geojson_to_print.features[feature].properties.style
   });
