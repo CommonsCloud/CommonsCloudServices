@@ -23,9 +23,11 @@ router.get('/', function(request, response) {
         console.log('exec error: ' + error);
       }
 
-      console.log('stdout', stdout);
+      var image_url = stdout;
 
-      response.redirect(stdout);
+      response.json({
+        'url': image_url
+      });
 
       // var img = fs.readFileSync(stdout);
       // response.writeHead(200, {'Content-Type': 'image/png' });
