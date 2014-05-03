@@ -21,6 +21,7 @@ router.get('/', function(request, response) {
         page.evaluate(
           function (status) {
             console.log('status', status);
+            return {};
           },
           function (result) {
             console.log('result', result);
