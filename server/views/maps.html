@@ -20,24 +20,24 @@ var geojson_to_print = <%- __geojson__ %>;
 
 var ChooseTileLayer = function (FeatureCollection) {
 
-  var tiles = {
+  var Tiles = {
     'street': 'developedsimple.i53fbg0j',
     'terrain': 'developedsimple.i53fmdgl',
     'satellite': 'developedsimple.i53fp4f1'
   };
 
-  var tileLayer = tiles['street'];
+  var TileLayer = tiles['street'];
 
-  if (geojson_to_print.properties.tileLayer) {
-    tileLayer = tiles[geojson_to_print.properties.tileLayer];
+  if (FeatureCollection.properties.tileLayer) {
+    TileLayer = Tiles[FeatureCollection.properties.tileLayer];
   }
 
-  return tileLayer;
+  return TileLayer;
 };
 
-var map = L.mapbox.map('map');
 
-
+var basemap = ChooseTileLayer(geojson_to_print);
+var map = L.mapbox.map('map', basemap);
 
 // var CCFeatureGroup = new L.FeatureGroup();
 // map.addLayer(CCFeatureGroup);
