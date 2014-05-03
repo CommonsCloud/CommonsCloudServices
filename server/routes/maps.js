@@ -27,9 +27,7 @@ router.get('/', function(request, response) {
 
       var image_url = stdout;
 
-      response.json({
-        'url': image_url
-      });
+      response.json({'url': image_url});
 
       // var img = fs.readFileSync(stdout);
       // response.writeHead(200, {'Content-Type': 'image/png' });
