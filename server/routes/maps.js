@@ -56,6 +56,8 @@ router.get('/pdf', function(request, response) {
 /* GET home page. */
 router.post('/live', function(request, response) {
 
+  console.log('');
+
   var geography_param = request.body;
 
   response.render('maps.html', { __geojson__: geography_param});
