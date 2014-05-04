@@ -12,7 +12,7 @@ function guid() {
   return s4() + s4() + '' + s4() + '' + s4() + '' + s4() + '' + s4() + s4() + s4();
 }
 
-var postBody = 'geography=' + JSON.stringify(system.args[2]);
+var postBody = 'geography=' + system.args[2];
 
 page.viewportSize = { width: 532, height: 712 };
 page.open(system.args[1], 'POST', postBody, function(status) {
