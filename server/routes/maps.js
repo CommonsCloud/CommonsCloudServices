@@ -24,14 +24,10 @@ router.post('/maps', function(request, response) {
 
 /* GET home page. */
 router.post('/maps/live', function(request, response) {
+  
+  console.log('request from /live', request.body);
 
-  console.log('Logg', request.body);
-
-  var request_body = JSON.parse(request.body);
-
-  console.log('request from /live', request_body);
-
-  var geography_param = request_body;
+  var geography_param = request.body;
 
   response.render('maps.html', { __geojson__: geography_param});
 });
