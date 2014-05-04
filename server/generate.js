@@ -20,7 +20,7 @@ var postBody = {
 page.viewportSize = { width: 532, height: 712 };
 page.open(system.args[1], 'POST', postBody, function(status) {
 
-    console.log('Status: ' + status);
+    console.log(status);
 
 
   // var uuid = guid();
