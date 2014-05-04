@@ -18,6 +18,7 @@ router.post('/', function(request, response) {
   var command = 'phantomjs generate.js ' + JSON.stringify(requested_map_url) + ' ' + format;
 
   console.log('command', command);
+  response.json({'url': request.data});
 
   child = exec(command,
     function (error, stdout, stderr) {
