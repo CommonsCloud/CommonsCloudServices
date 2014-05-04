@@ -8,7 +8,7 @@ router.post('/', function(request, response) {
   var requested_map_url = 'http://services.commonscloud.org/maps/live';
 
   console.log('requested_map_url', requested_map_url);
-  var command = 'phantomjs generate.js ' + JSON.stringify(requested_map_url);
+  var command = 'phantomjs generate.js ' + JSON.stringify(requested_map_url + ' ' + request.body);
 
   console.log('command', command);
   console.log('request', request.body);
@@ -54,11 +54,9 @@ router.get('/pdf', function(request, response) {
 });
 
 /* GET home page. */
-router.get('/live', function(request, response) {
+router.post('/live', function(request, response) {
 
-  var url_parts = url.parse(request.url, true);
-
-  var geography_param = url_parts.query['geography'];
+  var geography_param = request.body;
 
   response.render('maps.html', { __geojson__: geography_param});
 });
