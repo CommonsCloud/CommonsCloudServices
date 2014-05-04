@@ -14,7 +14,6 @@ var uuid = guid();
 var request_url = 
 
 page.viewportSize = { width: 532, height: 712 };
-page.open(system.args[1], function() {
 page.open(system.args[1], 'POST', system.args[2], function(status) {
 
   console.log('generate.js status', status);
