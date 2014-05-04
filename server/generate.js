@@ -18,14 +18,13 @@ page.open(system.args[1], 'POST', system.args[2], function(status) {
 
   console.log('generate.js status', status);
 
-  // setTimeout(function() {
-  //   page.render('public/map_' + uuid + '.' + extension);
+  setTimeout(function() {
+    page.render('public/map_' + uuid + '.' + extension);
 
-  //   var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
-  //   console.log(generated_image);
+    var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
+    console.log(generated_image);
 
-  //   phantom.exit();
-  // }, 2000);
+    phantom.exit();
+  }, 2000);
 
-  phantom.exit();
 });
