@@ -7,7 +7,7 @@ router.post('/maps', function(request, response) {
 
   var requested_map_url = 'http://services.commonscloud.org/maps/live';
 
-  var command = 'phantomjs generate.js ' + requested_map_url + ' ' + JSON.stringify(request.body.geography);
+  var command = 'phantomjs generate.js ' + requested_map_url + ' ' + request.body;
 
   child = exec(command,
     function (error, stdout, stderr) {
@@ -28,7 +28,7 @@ router.post('/maps/live', function(request, response) {
   console.log('request from /live', request.body);
 
   var geography_param = JSON.parse(request.body);
-  
+
   response.render('maps.html', { __geojson__: geography_param});
 });
 
