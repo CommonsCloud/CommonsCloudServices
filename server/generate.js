@@ -29,5 +29,5 @@ var callback = function(status) {
 
 };
 
-page.viewportSize = { width: 532, height: 712 };
+page.viewportSize = { width: 532, height: 532 };
 page.open(url, 'POST', data, callback);
