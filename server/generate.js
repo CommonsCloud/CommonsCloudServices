@@ -1,6 +1,8 @@
 var page = require('webpage').create();
 var system = require('system');
 
+console.log('started generating from phantomjs');
+
 function guid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -10,10 +12,11 @@ function guid() {
   return s4() + s4() + '' + s4() + '' + s4() + '' + s4() + '' + s4() + s4() + s4();
 }
 
-var request_body = JSON.parse(system.args[2]);
+// var request_body = JSON.parse(system.args[2]);
+console.log('request_body to be submitted', system.args[2]);
 
 page.viewportSize = { width: 532, height: 712 };
-page.open(system.args[1], 'POST', request_body, function(status) {
+page.open(system.args[1], 'POST', system.args[2], function(status) {
 
   var uuid = guid();
   var extension = 'png';
