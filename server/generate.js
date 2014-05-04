@@ -18,7 +18,7 @@ var postBody = {
 // console.log('request_body to be submitted', system.args[2]);
 
 page.viewportSize = { width: 532, height: 712 };
-page.open(system.args[1], 'POST', JSON.stringify({grr:'grrrnotvariable'}), function(status) {
+page.open(system.args[1], 'POST', {blah:JSON.stringify({grr:'grrrnotvariable'})}, function(status) {
 
     console.log(status);
 
