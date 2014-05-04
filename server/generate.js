@@ -22,7 +22,7 @@ var callback = function(status) {
     page.render('public/map_' + uuid + '.png');
 
     var image_url = 'http://services.commonscloud.org/map_' + uuid + '.png';
-    console.log(status, image_url);
+    console.log(image_url);
 
     phantom.exit();
   }, 2000);
