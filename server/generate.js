@@ -10,13 +10,13 @@ function guid() {
   return s4() + s4() + '' + s4() + '' + s4() + '' + s4() + '' + s4() + s4() + s4();
 }
 
+console.log('system.args[2]', system.args[2]);
+
 page.viewportSize = { width: 532, height: 712 };
 page.open(system.args[1], 'POST', system.args[2], function(status) {
 
   var uuid = guid();
   var extension = 'png';
-
-  console.log('system.args[2]', system.args[2]);
 
   setTimeout(function() {
     page.render('public/map_' + uuid + '.' + extension);
