@@ -3,7 +3,7 @@ var router = express.Router();
 var url = require('url');
 var exec = require('child_process').exec, child;
 
-router.get('/', function(request, response) {
+router.post('/', function(request, response) {
 
   response.setHeader("Access-Control-Allow-Origin", "*");
 
