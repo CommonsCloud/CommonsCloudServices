@@ -19,7 +19,7 @@ router.post('/', function(request, response) {
 
       var image_url = stdout.substring(0, stdout.length -1);
 
-    response.json({'url': 'grr'});
+    response.json({'url': image_url});
   });
 
 });
