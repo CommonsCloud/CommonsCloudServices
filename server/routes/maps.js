@@ -3,7 +3,7 @@ var router = express.Router();
 var url = require('url');
 var exec = require('child_process').exec, child;
 
-router.post('/', function(request, response) {
+router.post('/maps', function(request, response) {
 
   var requested_map_url = 'http://services.commonscloud.org/maps/live';
 
@@ -25,7 +25,7 @@ router.post('/', function(request, response) {
 });
 
 /* GET home page. */
-router.post('/live', function(request, response) {
+router.post('/maps/live', function(request, response) {
 
   console.log('request from /live', request.body);
 
