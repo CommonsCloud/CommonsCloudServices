@@ -25,7 +25,7 @@ router.post('/maps', function(request, response) {
 /* GET home page. */
 router.post('/maps/live', function(request, response) {
 
-  console.log('Logg');
+  console.log('Logg', request.body);
 
   var request_body = JSON.parse(request.body);
 
