@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var url = require('url');
 var exec = require('child_process').exec, child;
-var system = require('system');
-
 
 router.post('/', function(request, response) {
 
