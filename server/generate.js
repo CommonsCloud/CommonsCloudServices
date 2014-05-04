@@ -22,7 +22,10 @@ page.open(system.args[1], 'POST', postBody, function(status) {
     page.render('public/map_' + uuid + '.' + extension);
 
     var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
-    console.log(generated_image);
+    console.log({
+      'status': status
+      'image': generated_image
+    });
 
     phantom.exit();
   }, 2000);
