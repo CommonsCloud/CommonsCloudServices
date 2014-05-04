@@ -7,7 +7,7 @@ router.post('/', function(request, response) {
 
   var requested_map_url = 'http://services.commonscloud.org/maps/live';
 
-  var command = 'phantomjs generate.js ' + JSON.stringify(requested_map_url) + ' ' + request.body;
+  var command = 'phantomjs generate.js ' + requested_map_url + ' ' + request.body;
 
   console.log('command', command);
   response.json({'request': 'grr'});
