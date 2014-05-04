@@ -10,17 +10,18 @@ router.post('/', function(request, response) {
   var command = 'phantomjs generate.js ' + JSON.stringify(requested_map_url) + ' ' + format;
 
   console.log('request', request.body, 'request.body printed');
+  response.json({'url': 'grr'});
 
-  child = exec(command,
-    function (error, stdout, stderr) {
-      if (error !== null) {
-        console.log('exec error: ' + error);
-      }
+  // child = exec(command,
+  //   function (error, stdout, stderr) {
+  //     if (error !== null) {
+  //       console.log('exec error: ' + error);
+  //     }
 
-      var image_url = stdout.substring(0, stdout.length -1);
+  //     var image_url = stdout.substring(0, stdout.length -1);
 
-    response.json({'url': 'grr'});
-  });
+  //   response.json({'url': 'grr'});
+  // });
 
 });
 
