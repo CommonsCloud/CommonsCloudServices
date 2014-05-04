@@ -12,24 +12,27 @@ function guid() {
   return s4() + s4() + '' + s4() + '' + s4() + '' + s4() + '' + s4() + s4() + s4();
 }
 
-var request_body = {
-  'grr': 'grrrrrrrahhhhh'
+var postBody = {
+  grr: 'grrrrrrrahhhhh'
 };
-console.log('request_body to be submitted', system.args[2]);
+// console.log('request_body to be submitted', system.args[2]);
 
 page.viewportSize = { width: 532, height: 712 };
-page.open(system.args[1], 'POST', request_body, function(status) {
+page.open(system.args[1], 'POST', postBody, function(status) {
 
-  var uuid = guid();
-  var extension = 'png';
+    console.log('Status: ' + status);
 
-  setTimeout(function() {
-    page.render('public/map_' + uuid + '.' + extension);
 
-    var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
-    console.log(generated_image);
+  // var uuid = guid();
+  // var extension = 'png';
 
-    phantom.exit();
-  }, 2000);
+  // setTimeout(function() {
+  //   page.render('public/map_' + uuid + '.' + extension);
+
+  //   var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
+  //   console.log(generated_image);
+
+  //   phantom.exit();
+  // }, 2000);
 
 });
