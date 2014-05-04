@@ -12,13 +12,13 @@ function guid() {
   return s4() + s4() + '' + s4() + '' + s4() + '' + s4() + '' + s4() + s4() + s4();
 }
 
-var postBody = {
+var postBody = JSON.stringify({
   grr: 'grrrrrrrahhhhh'
-};
+});
 // console.log('request_body to be submitted', system.args[2]);
 
 page.viewportSize = { width: 532, height: 712 };
-page.open(system.args[1], 'POST', {blah:JSON.stringify({grr:'grrrnotvariable'})}, function(status) {
+page.open(system.args[1], 'POST', postBody, function(status) {
 
     console.log(status);
 
