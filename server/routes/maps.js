@@ -25,9 +25,11 @@ router.post('/maps', function(request, response) {
 /* GET home page. */
 router.post('/maps/live', function(request, response) {
 
-  console.log('request from /live', request.body);
+  var geography_param = JSON.parse(request.body);
 
-  var geography_param = JSON.parse(request);
+
+  console.log('request from /live', geography_param);
+
 
   response.render('maps.html', { __geojson__: geography_param});
 });
