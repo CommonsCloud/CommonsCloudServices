@@ -13,7 +13,7 @@ function guid() {
 console.log('system.args[2]', system.args[2]);
 
 page.viewportSize = { width: 532, height: 712 };
-page.open(system.args[1], 'POST', system.args[2], function(status) {
+page.open(system.args[1], 'POST', {'geography': system.args[2]}, function(status) {
 
   var uuid = guid();
   var extension = 'png';
