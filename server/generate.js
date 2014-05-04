@@ -10,22 +10,22 @@ function guid() {
   return s4() + s4() + '' + s4() + '' + s4() + '' + s4() + '' + s4() + s4() + s4();
 }
 
-var uuid = guid();
-
 page.viewportSize = { width: 532, height: 712 };
 page.open(system.args[1], 'POST', system.args[2], function(status) {
 
-  console.log('generate.js status', status);
-
+  var uuid = guid();
   var extension = 'png';
 
-  setTimeout(function() {
-    page.render('public/map_' + uuid + '.' + extension);
+  console.log('generate.js status', status);
 
-    var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
-    console.log(generated_image);
+  // setTimeout(function() {
+  //   page.render('public/map_' + uuid + '.' + extension);
 
-    phantom.exit();
-  }, 2000);
+  //   var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
+  //   console.log(generated_image);
 
+  //   phantom.exit();
+  // }, 2000);
+
+  phantom.exit();
 });
