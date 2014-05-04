@@ -2,24 +2,16 @@ var express = require('express');
 var router = express.Router();
 var url = require('url');
 var exec = require('child_process').exec, child;
+var system = require('system');
+
 
 router.post('/', function(request, response) {
 
-  response.setHeader("Access-Control-Allow-Origin", "*");
+  var requested_map_url = 'http://services.commonscloud.org/maps/live';
 
-  var url_parts = url.parse(request.url, true);
-
-  var geography_param = url_parts.query['geography'];
-  var format = url_parts.query['format'];
-
-  var requested_map_url = 'http://services.commonscloud.org/maps/live?geography=' + geography_param;
-
-  console.log('requested_map_url', requested_map_url);
   var command = 'phantomjs generate.js ' + JSON.stringify(requested_map_url) + ' ' + format;
 
-  console.log('command', command);
-  console.log('request', request);
-  response.json({'request': 'grr'});
+  console.log('request', request.body, 'request.body printed');
 
   child = exec(command,
     function (error, stdout, stderr) {
@@ -63,9 +55,7 @@ router.get('/pdf', function(request, response) {
 /* GET home page. */
 router.get('/live', function(request, response) {
 
-  var url_parts = url.parse(request.url, true);
-
-  var geography_param = url_parts.query['geography'];
+  var geography_param = system.args[1];
 
   response.render('maps.html', { __geojson__: geography_param});
 });
