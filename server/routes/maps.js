@@ -7,15 +7,16 @@ router.post('/maps', function(request, response) {
 
   var requested_map_url = 'http://services.commonscloud.org/maps/live';
 
-  var command = 'phantomjs generate.js ' + requested_map_url + ' ' + JSON.stringify(request.body.geography);
+  var command = 'phantomjs generate.js ' + requested_map_url + ' ' +
+                    JSON.stringify(request.body.geography);
 
   child = exec(command,
-    function (error, stdout, stderr) {
+    function(error, stdout, stderr) {
       if (error !== null) {
         console.log('exec error: ' + error);
       }
 
-      var image_url = stdout.substring(0, stdout.length -1);
+      var image_url = stdout.substring(0, stdout.length - 1);
 
     response.json({'url': image_url});
   });
