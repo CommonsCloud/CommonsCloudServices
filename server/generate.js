@@ -12,7 +12,9 @@ function guid() {
   return s4() + s4() + '' + s4() + '' + s4() + '' + s4() + '' + s4() + s4() + s4();
 }
 
-var request_body = JSON.parse(system.args[2]);
+var request_body = {
+  'grr': 'grrrrrrrahhhhh'
+};
 console.log('request_body to be submitted', system.args[2]);
 
 page.viewportSize = { width: 532, height: 712 };
