@@ -16,8 +16,6 @@ page.open(system.args[1], 'POST', system.args[2], function(status) {
   var uuid = guid();
   var extension = 'png';
 
-  console.log('generate.js status', status);
-
   setTimeout(function() {
     page.render('public/map_' + uuid + '.' + extension);
 
