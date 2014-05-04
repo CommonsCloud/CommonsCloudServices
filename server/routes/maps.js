@@ -9,7 +9,11 @@ router.post('/maps', function(request, response) {
 
   var command = 'phantomjs generate.js ' + requested_map_url + ' ' + JSON.stringify(request.body.geography);
 
-  console.log('request.body', request.body);
+  request.on('data', function(chunk) {
+    console.log("Received body data:");
+    console.log(chunk.toString());
+  });
+
   console.log('command', command);
 
   child = exec(command,
