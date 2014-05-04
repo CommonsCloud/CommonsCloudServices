@@ -11,16 +11,16 @@ router.post('/', function(request, response) {
 
   console.log('request', request.body, 'request.body printed');
 
-  child = exec(command,
-    function (error, stdout, stderr) {
-      if (error !== null) {
-        console.log('exec error: ' + error);
-      }
+  // child = exec(command,
+  //   function (error, stdout, stderr) {
+  //     if (error !== null) {
+  //       console.log('exec error: ' + error);
+  //     }
 
-      var image_url = stdout.substring(0, stdout.length -1);
+  //     var image_url = stdout.substring(0, stdout.length -1);
 
-    response.json({'url': request.data});
-  });
+  //   response.json({'url': request.data});
+  // });
 
 });
 
