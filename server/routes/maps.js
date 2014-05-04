@@ -9,13 +9,6 @@ router.post('/maps', function(request, response) {
 
   var command = 'phantomjs generate.js ' + requested_map_url + ' ' + JSON.stringify(request.body.geography);
 
-  request.on('data', function(chunk) {
-    console.log("Received body data:");
-    console.log(chunk.toString());
-  });
-
-  console.log('command', command);
-
   child = exec(command,
     function (error, stdout, stderr) {
       if (error !== null) {
@@ -32,9 +25,9 @@ router.post('/maps', function(request, response) {
 /* GET home page. */
 router.post('/maps/live', function(request, response) {
 
-  // console.log('request from /live', request.body);
+  console.log('request from /live', request.data);
 
-  var geography_param = JSON.parse(request.body);
+  var geography_param = JSON.parse(request);
 
   response.render('maps.html', { __geojson__: geography_param});
 });
