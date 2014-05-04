@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var url = require('url');
 var exec = require('child_process').exec, child;
+var system = require('system');
+
 
 router.post('/', function(request, response) {
 
@@ -10,18 +12,17 @@ router.post('/', function(request, response) {
   var command = 'phantomjs generate.js ' + JSON.stringify(requested_map_url) + ' ' + format;
 
   console.log('request', request.body, 'request.body printed');
-  response.json({'url': 'grr'});
 
-  // child = exec(command,
-  //   function (error, stdout, stderr) {
-  //     if (error !== null) {
-  //       console.log('exec error: ' + error);
-  //     }
+  child = exec(command,
+    function (error, stdout, stderr) {
+      if (error !== null) {
+        console.log('exec error: ' + error);
+      }
 
-  //     var image_url = stdout.substring(0, stdout.length -1);
+      var image_url = stdout.substring(0, stdout.length -1);
 
-  //   response.json({'url': 'grr'});
-  // });
+    response.json({'url': request.data});
+  });
 
 });
 
@@ -53,6 +54,8 @@ router.get('/pdf', function(request, response) {
 
 /* GET home page. */
 router.get('/live', function(request, response) {
+
+  var geography_param = system.args[1];
 
   response.render('maps.html', { __geojson__: geography_param});
 });
