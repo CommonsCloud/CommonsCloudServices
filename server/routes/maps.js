@@ -26,6 +26,7 @@ router.post('/maps', function(request, response) {
 router.post('/maps/live', function(request, response) {
 
   console.log('request from /live', request.data);
+  console.log('request from /live', request);
 
   var geography_param = JSON.parse(request.body);
 
