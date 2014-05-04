@@ -17,19 +17,16 @@ var postBody = 'geography=' + system.args[2];
 page.viewportSize = { width: 532, height: 712 };
 page.open(system.args[1], 'POST', postBody, function(status) {
 
-    console.log(status);
+  var uuid = guid();
+  var extension = 'png';
 
+  setTimeout(function() {
+    page.render('public/map_' + uuid + '.' + extension);
 
-  // var uuid = guid();
-  // var extension = 'png';
+    var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
+    console.log(generated_image);
 
-  // setTimeout(function() {
-  //   page.render('public/map_' + uuid + '.' + extension);
-
-  //   var generated_image = 'http://services.commonscloud.org/map_' + uuid + '.' + extension;
-  //   console.log(generated_image);
-
-  //   phantom.exit();
-  // }, 2000);
+    phantom.exit();
+  }, 2000);
 
 });
