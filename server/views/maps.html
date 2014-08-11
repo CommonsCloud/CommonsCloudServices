@@ -62,10 +62,37 @@
       Map.addLayer(FeatureGroup);
 
       for(feature = 0; feature < FeatureCollection.features.length; feature++) {
-        console.log('styles',FeatureCollection.features[feature].properties.style);
-        var single_feature = L.geoJson(FeatureCollection.features[feature], {
-          style: FeatureCollection.features[feature].properties.style
-        });
+
+        if (FeatureCollection.features[feature].properties.type === 'stormwater_flow' && FeatureCollection.features[feature].geometry.type === 'Point') {
+          var single_feature = L.geoJson(FeatureCollection.features[feature], {
+              pointToLayer: function (feature, latlng) {
+                return L.marker(latlng, {
+                  icon: L.icon({
+                    "iconUrl": "https://api.tiles.mapbox.com/v3/marker/pin-l+D3A717.png",
+                    "iconSize": [35, 90],
+                    "iconAnchor": [17,42]
+                  })
+                });
+              }
+          });
+        } else if (FeatureCollection.features[feature].properties.type === 'best_practices' && FeatureCollection.features[feature].geometry.type === 'Point') {
+          var single_feature = L.geoJson(FeatureCollection.features[feature], {
+              pointToLayer: function (feature, latlng) {
+                return L.marker(latlng, {
+                  icon: L.icon({
+                    "iconUrl": "https://api.tiles.mapbox.com/v3/marker/pin-l+17CFCF.png",
+                    "iconSize": [35, 90],
+                    "iconAnchor": [17,42]
+                  })
+                });
+              }
+          });
+        } else {
+          var single_feature = L.geoJson(FeatureCollection.features[feature], {
+            style: FeatureCollection.features[feature].properties.style
+          });
+        }
+
         FeatureGroup.addLayer(single_feature);
       };
 
