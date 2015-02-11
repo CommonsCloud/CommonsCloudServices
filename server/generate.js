@@ -25,7 +25,7 @@ var callback = function(status) {
     console.log(image_url);
 
     phantom.exit();
-  }, 2000);
+  }, 5000);
 
 };
 

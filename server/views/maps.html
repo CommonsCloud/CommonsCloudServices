@@ -55,7 +55,10 @@
     };
 
     var Basemap = ChooseTileLayer(FeatureCollection);
-    var Map = L.mapbox.map('map', Basemap);
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZGV2ZWxvcGVkc2ltcGxlIiwiYSI6ImZna2xmbXcifQ.QVf-7eZZlqnM2QQSALM49w';
+    var Map = L.mapbox.map('map', Basemap, {
+      maxZoom: 18
+    });
 
     Map.on('ready', function() {
       var FeatureGroup = new L.FeatureGroup();
